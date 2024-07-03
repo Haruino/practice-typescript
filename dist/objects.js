@@ -4,26 +4,32 @@ uhyo,26,1
 John Smith,17,0
 Mary Sue,14,1
 `;
-const users = [];
-const lines = data.split("\n");
-for (const line of lines) {
-    // 空行のスキップ、continueで次のループ処理
-    if (line === "") {
-        continue;
-    }
-    // 分割代入
+// const users: User[] = [];
+// const lines = data.split("\n");
+// for (const line of lines) {
+//   if (line === "") {
+//     continue;
+//   }
+//   const [name, ageString, premiumUserString] = line.split(",");
+//   const age = Number(ageString);
+//   const premiumUser = premiumUserString === "1";
+//   users.push({
+//     name,
+//     age,
+//     premiumUser,
+//   });
+// }
+// console.log(users);
+const users = data.split("\n")
+    .filter(line => line !== "")
+    .map(line => {
     const [name, ageString, premiumUserString] = line.split(",");
-    // ageを数値に変換
-    const age = Number(ageString);
-    // プレミアムユーザーの条件判定
-    const premiumUser = premiumUserString === "1";
-    users.push({
+    return {
         name,
-        age,
-        premiumUser,
-    });
-}
-console.log(users);
+        age: Number(ageString),
+        premiumUser: premiumUserString === "1",
+    };
+});
 for (const user of users) {
     if (user.premiumUser) {
         console.log(`${user.name}(${user.age})はプレミアムユーザーです。`);
