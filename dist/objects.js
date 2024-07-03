@@ -21,6 +21,7 @@ Mary Sue,14,1
 // }
 // console.log(users);
 const users = data.split("\n")
+    // 空行をフィルタリング
     .filter(line => line !== "")
     .map(line => {
     const [name, ageString, premiumUserString] = line.split(",");
