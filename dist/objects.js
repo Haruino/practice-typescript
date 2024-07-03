@@ -7,11 +7,15 @@ Mary Sue,14,1
 const users = [];
 const lines = data.split("\n");
 for (const line of lines) {
+    // 空行のスキップ、continueで次のループ処理
     if (line === "") {
         continue;
     }
+    // 分割代入
     const [name, ageString, premiumUserString] = line.split(",");
+    // ageを数値に変換
     const age = Number(ageString);
+    // プレミアムユーザーの条件判定
     const premiumUser = premiumUserString === "1";
     users.push({
         name,
@@ -19,6 +23,7 @@ for (const line of lines) {
         premiumUser,
     });
 }
+console.log(users);
 for (const user of users) {
     if (user.premiumUser) {
         console.log(`${user.name}(${user.age})はプレミアムユーザーです。`);
