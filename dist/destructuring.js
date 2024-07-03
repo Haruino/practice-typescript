@@ -1,7 +1,5 @@
 "use strict";
-const obj = {
-    1: "one",
-    2.05: "two point o five",
-};
-console.log(obj["1"]);
-console.log(obj["2.05"]);
+const foo = { obj: { num: 1234 } };
+const bar = Object.assign({}, foo);
+bar.obj.num = 0;
+console.log(foo.obj.num);
